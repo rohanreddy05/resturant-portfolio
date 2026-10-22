@@ -1,0 +1,401 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Spice Story | Authentic Indian Cuisine</title>
+  <meta name="description" content="Discover delicious Indian food, fresh ingredients and warm hospitality at Spice Story.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Playfair+Display:wght@500;600;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg: #12110f;
+      --panel: #1c1a16;
+      --gold: #efbd55;
+      --cream: #fff7e9;
+      --muted: #b9b1a5;
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; scroll-padding-top: 85px; }
+    body {
+      background: var(--bg);
+      color: var(--cream);
+      font-family: 'DM Sans', sans-serif;
+      line-height: 1.65;
+    }
+    a { color: inherit; text-decoration: none; }
+    button { font: inherit; cursor: pointer; }
+    img { display: block; width: 100%; object-fit: cover; }
+    .container { width: min(1120px, 90%); margin: auto; }
+
+    header {
+      position: sticky;
+      top: 0;
+      z-index: 10;
+      background: rgba(18,17,15,.96);
+      border-bottom: 1px solid #383128;
+    }
+    nav {
+      min-height: 76px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 20px;
+    }
+    .logo {
+      font: 700 25px 'Playfair Display', serif;
+      color: var(--gold);
+    }
+    .logo span {
+      display: block;
+      font: 10px 'DM Sans', sans-serif;
+      letter-spacing: 3px;
+      color: var(--muted);
+    }
+    .navlinks { display: flex; gap: 27px; align-items: center; }
+    .navlinks a { font-size: 14px; }
+    .navlinks a:hover { color: var(--gold); }
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      padding: 12px 20px;
+      border: 1px solid var(--gold);
+      border-radius: 7px;
+      color: var(--gold);
+      font-weight: 600;
+      transition: .2s;
+    }
+    .btn:hover { background: var(--gold); color: #17130c; }
+    .btn.primary { background: var(--gold); color: #17130c; }
+    .btn.primary:hover { background: #ffda88; }
+    .menu-toggle {
+      display: none;
+      color: var(--gold);
+      background: none;
+      border: 1px solid #55452c;
+      border-radius: 6px;
+      padding: 7px 11px;
+    }
+
+    .hero {
+      min-height: 500px;
+      display: flex;
+      align-items: center;
+      background:
+        linear-gradient(90deg, #12110f 5%, rgba(18,17,15,.94) 33%,
+        rgba(18,17,15,.48) 66%, rgba(18,17,15,.18)),
+        url('https://images.unsplash.com/photo-1565299624946-b28f40a0ae38?auto=format&fit=crop&w=1800&q=85')
+        center/cover;
+    }
+    .hero-content { max-width: 590px; padding: 85px 0; }
+    .eyebrow {
+      color: var(--gold);
+      letter-spacing: 4px;
+      font-size: 11px;
+      font-weight: 700;
+      text-transform: uppercase;
+    }
+    h1, h2, h3 { font-family: 'Playfair Display', serif; line-height: 1.2; }
+    h1 { font-size: clamp(42px, 6vw, 68px); margin: 17px 0; }
+    h1 em { color: var(--gold); font-weight: 500; }
+    .hero p { color: #ddd3c6; max-width: 470px; margin-bottom: 27px; }
+    .actions { display: flex; flex-wrap: wrap; gap: 12px; }
+
+    .features {
+      border-block: 1px solid #383128;
+      padding: 25px 0;
+    }
+    .feature-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 20px;
+    }
+    .feature { display: flex; gap: 12px; align-items: center; }
+    .feature .symbol { color: var(--gold); font-size: 26px; }
+    .feature strong { display: block; font-size: 14px; }
+    .feature small { color: var(--muted); font-size: 12px; }
+
+    section { padding: 85px 0; }
+    .section-heading { margin-bottom: 30px; }
+    .section-heading h2 { font-size: clamp(30px, 4vw, 42px); margin-top: 8px; }
+    .section-heading p { color: var(--muted); margin-top: 10px; }
+
+    .about-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 55px;
+      align-items: center;
+    }
+    .about-img { height: 390px; border-radius: 12px; }
+    .about-copy p { color: var(--muted); margin: 18px 0; }
+    .stats { display: flex; flex-wrap: wrap; gap: 30px; margin-top: 27px; }
+    .stats strong { display: block; color: var(--gold); font-size: 23px; }
+    .stats span { font-size: 12px; color: var(--muted); }
+
+    #menu { background: #191713; }
+    .menu-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 20px;
+    }
+    .dish {
+      overflow: hidden;
+      background: var(--panel);
+      border: 1px solid #302a20;
+      border-radius: 10px;
+      transition: transform .2s;
+    }
+    .dish:hover { transform: translateY(-5px); }
+    .dish img { height: 185px; }
+    .dish-info { padding: 17px; }
+    .dish h3 { font-size: 19px; }
+    .dish p { color: var(--muted); font-size: 13px; margin: 9px 0 12px; }
+    .price { color: var(--gold); font-size: 19px; font-weight: 700; }
+
+    .gallery-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 15px;
+    }
+    .gallery-grid img { height: 230px; border-radius: 9px; }
+
+    .contact-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 35px;
+    }
+    .contact-card {
+      background: var(--panel);
+      padding: 28px;
+      border: 1px solid #302a20;
+      border-radius: 10px;
+    }
+    .contact-card p { color: var(--muted); margin: 14px 0; }
+    .contact-card strong { color: var(--gold); }
+    .contact-card .btn { margin-top: 12px; }
+
+    footer { border-top: 1px solid #383128; padding: 28px 0; }
+    .footer-inner {
+      display: flex; flex-wrap: wrap;
+      justify-content: space-between; gap: 15px;
+      color: var(--muted); font-size: 13px;
+    }
+    .footer-inner a { color: var(--gold); }
+
+    @media (max-width: 850px) {
+      .navlinks { gap: 14px; }
+      .navlinks a { font-size: 12px; }
+      .nav-cta { display: none; }
+      .feature-grid { grid-template-columns: repeat(2, 1fr); }
+      .menu-grid { grid-template-columns: repeat(2, 1fr); }
+      .about-grid { gap: 30px; }
+    }
+    @media (max-width: 600px) {
+      nav { min-height: 68px; }
+      .logo { font-size: 21px; }
+      .menu-toggle { display: block; }
+      .navlinks {
+        display: none;
+        position: absolute;
+        top: 68px; left: 0; right: 0;
+        background: #191713;
+        padding: 20px 5%;
+        flex-direction: column;
+        align-items: flex-start;
+        border-bottom: 1px solid #383128;
+      }
+      .navlinks.open { display: flex; }
+      .navlinks a { font-size: 15px; }
+      .hero { min-height: 480px; background-position: 60% center; }
+      .hero-content { padding: 65px 0; }
+      .about-grid, .contact-grid { grid-template-columns: 1fr; }
+      .about-img { height: 280px; }
+      section { padding: 60px 0; }
+      .menu-grid { gap: 12px; }
+      .dish img { height: 135px; }
+      .dish-info { padding: 12px; }
+      .dish h3 { font-size: 16px; }
+      .dish p { font-size: 12px; }
+      .gallery-grid { grid-template-columns: repeat(2, 1fr); }
+      .gallery-grid img { height: 155px; }
+      .feature-grid { gap: 18px 10px; }
+      .feature { gap: 8px; }
+      .feature strong { font-size: 12px; }
+      .feature small { font-size: 10px; }
+    }
+  </style>
+</head>
+<body>
+
+<header>
+  <nav class="container">
+    <a class="logo" href="#home">Spice Story
+      <span>TASTE · TRADITION · TOGETHER</span>
+    </a>
+    <button class="menu-toggle" id="menuToggle"
+      aria-label="Toggle navigation" aria-expanded="false">☰</button>
+    <div class="navlinks" id="navLinks">
+      <a href="#home">Home</a>
+      <a href="#about">Our Story</a>
+      <a href="#menu">Menu</a>
+      <a href="#gallery">Gallery</a>
+      <a href="#contact">Contact</a>
+    </div>
+    <a class="btn nav-cta" href="#contact">Contact Us ↗</a>
+  </nav>
+</header>
+
+<main>
+  <section class="hero" id="home">
+    <div class="container">
+      <div class="hero-content">
+        <div class="eyebrow">Authentic Indian Cuisine</div>
+        <h1>Good Food<br>Brings People <em>Together.</em></h1>
+        <p>Discover the rich flavours of India, made with fresh
+          ingredients, timeless recipes, and a whole lot of love.</p>
+        <div class="actions">
+          <a class="btn primary" href="#menu">Explore Our Menu ↗</a>
+          <a class="btn" href="#contact">Visit Our Restaurant</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <div class="features">
+    <div class="container feature-grid">
+      <div class="feature"><span class="symbol">✳</span><div><strong>Fresh Ingredients</strong><small>Freshness in every bite</small></div></div>
+      <div class="feature"><span class="symbol">♨</span><div><strong>Authentic Taste</strong><small>Recipes full of tradition</small></div></div>
+      <div class="feature"><span class="symbol">♡</span><div><strong>Made with Love</strong><small>Every meal matters</small></div></div>
+      <div class="feature"><span class="symbol">☆</span><div><strong>Warm Ambience</strong><small>Feel right at home</small></div></div>
+    </div>
+  </div>
+
+  <section id="about">
+    <div class="container about-grid">
+      <img class="about-img"
+        src="https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?auto=format&fit=crop&w=1000&q=85"
+        alt="Warm restaurant dining room" loading="lazy">
+      <div class="about-copy">
+        <div class="eyebrow">A Little About Us</div>
+        <div class="section-heading"><h2>More Than Just a Meal</h2></div>
+        <p>At Spice Story, food is about bringing people together.
+          From comforting classics to bold favourites, we celebrate
+          the flavours that make every meal memorable.</p>
+        <p>Whether it's a family dinner, a catch-up with friends,
+          or a special occasion, there's always a place for you here.</p>
+        <div class="stats">
+          <div><strong>25+</strong><span>Signature Dishes</span></div>
+          <div><strong>100%</strong><span>Made with Care</span></div>
+          <div><strong>One</strong><span>Happy Table</span></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="menu">
+    <div class="container">
+      <div class="section-heading">
+        <div class="eyebrow">Made to Be Savoured</div>
+        <h2>Our Popular Dishes</h2>
+        <p>A little something for every craving.</p>
+      </div>
+      <div class="menu-grid">
+        <article class="dish">
+          <img src="https://images.unsplash.com/photo-1563379091339-03246963d96c?auto=format&fit=crop&w=600&q=80" alt="Chicken biryani" loading="lazy">
+          <div class="dish-info"><h3>Chicken Biryani</h3><p>Fragrant rice, aromatic spices and tender chicken.</p><div class="price">₹220</div></div>
+        </article>
+        <article class="dish">
+          <img src="https://images.unsplash.com/photo-1603894584373-5ac82b2ae398?auto=format&fit=crop&w=600&q=80" alt="Butter chicken curry" loading="lazy">
+          <div class="dish-info"><h3>Butter Chicken</h3><p>A rich, creamy curry packed with flavour.</p><div class="price">₹260</div></div>
+        </article>
+        <article class="dish">
+          <img src="https://images.unsplash.com/photo-1631452180519-c014fe946bc7?auto=format&fit=crop&w=600&q=80" alt="Indian paneer curry" loading="lazy">
+          <div class="dish-info"><h3>Paneer Masala</h3><p>Soft paneer in a delicious spiced gravy.</p><div class="price">₹200</div></div>
+        </article>
+        <article class="dish">
+          <img src="https://images.unsplash.com/photo-1599487488170-d11ec9c172f0?auto=format&fit=crop&w=600&q=80" alt="Grilled tandoori food" loading="lazy">
+          <div class="dish-info"><h3>Tandoori Special</h3><p>Smoky, chargrilled and full of flavour.</p><div class="price">₹280</div></div>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <section id="gallery">
+    <div class="container">
+      <div class="section-heading">
+        <div class="eyebrow">A Feast for the Eyes</div>
+        <h2>Moments at Our Table</h2>
+        <p>Good food. Great company. Beautiful memories.</p>
+      </div>
+      <div class="gallery-grid">
+        <img src="https://images.unsplash.com/photo-1559339352-11d035aa65de?auto=format&fit=crop&w=600&q=80" alt="Restaurant interior" loading="lazy">
+        <img src="https://images.unsplash.com/photo-1544025162-d76694265947?auto=format&fit=crop&w=600&q=80" alt="A delicious meal" loading="lazy">
+        <img src="https://images.unsplash.com/photo-1547592180-85f173990554?auto=format&fit=crop&w=600&q=80" alt="Freshly prepared food" loading="lazy">
+      </div>
+    </div>
+  </section>
+
+  <section id="contact">
+    <div class="container">
+      <div class="section-heading">
+        <div class="eyebrow">Come on In</div>
+        <h2>We'd Love to See You</h2>
+      </div>
+      <div class="contact-grid">
+        <div class="contact-card">
+          <h3>Find Us</h3>
+          <p><strong>Address</strong><br>123 Example Street, Hyderabad, Telangana</p>
+          <p><strong>Opening Hours</strong><br>Every day · 11:00 AM – 11:00 PM</p>
+          <p><strong>Phone</strong><br>+91 XXXXX XXXXX</p>
+          <a class="btn" href="https://www.google.com/maps/"
+            target="_blank" rel="noopener">Get Directions ↗</a>
+        </div>
+        <div class="contact-card">
+          <h3>Let's Make It a Meal</h3>
+          <p>Have a question or want to enquire about an order?
+            Get in touch with us on WhatsApp.</p>
+          <!-- Replace 91XXXXXXXXXX with the real number, including country code -->
+          <a class="btn primary"
+            href="https://wa.me/91XXXXXXXXXX"
+            target="_blank" rel="noopener">Message Us on WhatsApp ↗</a>
+          <p style="font-size:12px">Demo website: contact details and prices
+            are illustrative and must be verified before launch.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div class="container footer-inner">
+    <span>© <span id="year"></span> Spice Story. Demo website.</span>
+    <span>Crafted with care.</span>
+  </div>
+</footer>
+
+<script>
+  const toggle = document.getElementById('menuToggle');
+  const links = document.getElementById('navLinks');
+
+  toggle.addEventListener('click', () => {
+    const isOpen = links.classList.toggle('open');
+    toggle.setAttribute('aria-expanded', String(isOpen));
+    toggle.textContent = isOpen ? '✕' : '☰';
+  });
+
+  links.querySelectorAll('a').forEach(link => {
+    link.addEventListener('click', () => {
+      links.classList.remove('open');
+      toggle.setAttribute('aria-expanded', 'false');
+      toggle.textContent = '☰';
+    });
+  });
+
+  document.getElementById('year').textContent = new Date().getFullYear();
+</script>
+
+</body>
+</html>
